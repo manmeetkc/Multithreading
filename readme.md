@@ -1,7 +1,7 @@
 # Multithreading
 
 
-##Thread
+## Thread
 - unit of execution
 - shares resources with other threads in the process
 - easy context switching
