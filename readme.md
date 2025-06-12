@@ -27,9 +27,9 @@
 ![img.png](src/main/java/img.png)
 
 
-##Exceptions
+## Exceptions
 
-###Checked exceptions
+### Checked exceptions
 
 Checked exceptions are exceptions that must be either declared in the method signature using throws or handled using try-catch.
 They are checked at compile-time.
@@ -38,7 +38,7 @@ IOException (e.g., file not found)
 SQLException (e.g., database connection failure)
 InterruptedException (e.g., thread interruption)
 
-###Unchecked exceptions
+### Unchecked exceptions
 Unchecked exceptions are runtime errors that do not require explicit handling.
 They are checked at runtime, meaning they occur due to logical errors in the program.
 Examples:
@@ -47,7 +47,7 @@ ArrayIndexOutOfBoundsException (e.g., accessing an invalid array index)
 ArithmeticException (e.g., division by zero) 
 
 
-##FAQ
+## FAQ
 
 ### thread safety
 Answer: Thread safety refers to code that functions correctly during simultaneous execution by multiple threads. It can be achieved through synchronization, immutable objects, concurrent collections, atomic variables, and thread-local variables. 🔒 
@@ -58,7 +58,7 @@ Answer: Thread safety refers to code that functions correctly during simultaneou
 
 
 
-##Thead methods
+## Thead methods
 
 ## sleep
 - does not release locks
@@ -79,12 +79,11 @@ Answer: Thread safety refers to code that functions correctly during simultaneou
 Once the thread reacquires the lock, it continues execution from where it called wait(). 
 
 
-
-##Thread Lifecycle
+## Thread Lifecycle
 
 ![img_1.png](src/main/java/img_1.png)
 
-###States
+### States
 
 - blocked: trying to access locked resource, or maybe I/O
 - waiting: to be notified
@@ -102,7 +101,7 @@ Once the thread reacquires the lock, it continues execution from where it called
   - It does not block or wait like wait() → the thread stays runnable.
 
   - It is a cooperative hint, not a guarantee.
-##Synchronised keyword
+## Synchronised keyword
 
 - If its declared on a method, then the current instance of the object is locked
 - synchronized instance methods → lock instance → one thread per object
@@ -338,7 +337,7 @@ This ensures safe publication of Singleton.
 ```
 
 
-####Where to use volatile?
+#### Where to use volatile?
 
 State/flag variables
 Singleton Patterns (with double-checked locking)
@@ -357,7 +356,7 @@ synchronized (Singleton.class) {
 instance is volatile here
 only require visibility guarantees -> use volatile
 
-###Atomic Variables:
+### Atomic Variables:
 
 You should use atomic variables when you need to perform simple operations(like incrementing, decrementing, or updating) 
 on shared variables in a multithreaded environment. 
@@ -375,7 +374,7 @@ These methods must be called from within a synchronized context (a synchronized 
 whose monitor the thread is waiting on. They work together with a shared condition (often a flag or another shared variable) that threads check in a loop to handle spurious wakeups
 
 
-###Producer consumer problem example
+### Producer consumer problem example
 
 We have a queue, one thread is producer one is consumer.
 Our condition is that producer should produce until queue is full
@@ -446,14 +445,14 @@ public class SimpleSignalExample {
 
 ## Java Concurrent Collections
 
-###Concurrent Hashmap
+### Concurrent Hashmap
 
-####Hashmap internal
+#### Hashmap internal
 - Uses array of buckets - hash the key, if there is collision, add to linked list. 
 - Node<K,V> stored in bucket. 
 - Iterate through key when get() is called.
 
-####Thread safety
+#### Thread safety
 - Hashmap itself is not threadsafe. We need to take lock on it or use synchronised(same thing) to make it thread safe.
 - The whole map is locked when we use ```Collections.synchronisedMap(new HashMap<>())```
 - Because we need to put it in a synchronised block while iterating through it.
@@ -472,11 +471,11 @@ The above three operations are done atomically with Reentrant locks
 If there is thread iterating through it is iterating through the previous snapshot, which was there when the iterator was created
 
 
-###ConcurrentLinkedQueue
+### ConcurrentLinkedQueue
 
 LinkedList is used as a queue and it implements the queue interface. It internally uses doubly linked list and is not thread safe.
 ConcurrentLinkedQueue uses singly linked list and uses atomic compare and swap operations to ensure thread safety.
-####Compare And Swap 
+#### Compare And Swap 
 
 ```java 
 AtomicReference<Node> atomicNode = new AtomicReference<>(currentNode); 
@@ -485,7 +484,7 @@ boolean isUpdated = ref.compareAndSet(currentNode, newNode);
 ```
 it will only set when ref holds currentNode otherwise will return false.
 
-####CAS in ConcurrentLinkedQueue
+#### CAS in ConcurrentLinkedQueue
 ```java
 last = tail;
 
@@ -503,7 +502,7 @@ else{
 Enables all writes to go through eventually, and synchronously. Does not lock anything. 
 ![img_4.png](src/main/java/img_4.png)
 
-###BlockingQueue(Interface)
+### BlockingQueue(Interface)
 ConcurrentLinkedQueue is not blocking. If there is nothing in the queue it will return null.
 However in producer consumer pattern we want consumer thread to be blocked until there are elements to consume and producer to be blocked
 until queue is non-full.
