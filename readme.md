@@ -24,7 +24,7 @@
 - Implement interface and pass to executor service 
 - Has return type
 
-![img.png](img.png)
+![img.png](src/main/java/img.png)
 
 
 ##Exceptions
@@ -82,7 +82,7 @@ Once the thread reacquires the lock, it continues execution from where it called
 
 ##Thread Lifecycle
 
-![img_1.png](img_1.png)
+![img_1.png](src/main/java/img_1.png)
 
 ###States
 
@@ -135,7 +135,7 @@ Once the thread reacquires the lock, it continues execution from where it called
   - I/O bound will wait, if we use fixed threads might just be waiting wasting resources, cached threadpool will dynamically create new threads
   - The cached thread pool automatically manages thread creation and termination. 
   - Idle threads are reclaimed after a period of inactivity (typically 60 seconds), reducing resource consumption when the system is less busy. With a fixed thread pool, the threads exist for the lifetime of the executor, even if they are often idle. 
-![img_2.png](img_2.png)
+![img_2.png](src/main/java/img_2.png)
   
 ### Thread pool executor for custom threadpools
 
@@ -194,7 +194,7 @@ new ThreadPoolExecutor(
         new LinkedBlockingQueue<Runnable>(100) // bounded queue of size 100
         )
 ```
-![img_3.png](img_3.png)
+![img_3.png](src/main/java/img_3.png)
 
 Here is the **most concise version** of the `.md` — clear and minimal, keeping only the core flow:
 
@@ -501,7 +501,7 @@ else{
 ```
 
 Enables all writes to go through eventually, and synchronously. Does not lock anything. 
-![img_4.png](img_4.png)
+![img_4.png](src/main/java/img_4.png)
 
 ###BlockingQueue(Interface)
 ConcurrentLinkedQueue is not blocking. If there is nothing in the queue it will return null.
@@ -510,7 +510,7 @@ until queue is non-full.
 
 Different types of blocking queue implementations
 
-![img_5.png](img_5.png)
+![img_5.png](src/main/java/img_5.png)
 
 
 ## Future and CompletableFuture
@@ -588,5 +588,5 @@ CompletableFuture<User> userFuture = future.thenCompose(id -> fetchUser(id));
 ```
 Can also add timeouts to futures and return default values. 
 
-![img_6.png](img_6.png)
+![img_6.png](src/main/java/img_6.png)
 
