@@ -302,12 +302,12 @@ Can declare entire method as synchronised. The lock is taken on the object of th
 In case of static class, lock is taken on class.
 Only one method at a time can execute any of the synchronised methods
 
-###Synchronised block
+### Synchronised block
 can pass the object to acquire lock on. 
 more fine grained
 The primary reason to choose a synchronized block over a synchronized method is when you have additional work in the method that doesn’t need to be synchronized. This allows concurrent threads to execute the non-critical sections without waiting for the lock
 
-###Volatile keyword
+### Volatile keyword
 indicate value will be changed by multiple threads
 Ensures:
 
